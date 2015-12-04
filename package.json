@@ -1,26 +1,33 @@
 {
-  "name": "es6-6to5-browserify-boilerplate",
+  "name": "browserify-babel-boilerplate",
   "version": "0.0.0",
-  "description": "A repo to play with ES6++",
-  "homepage": "https://github.com/thoughtram/es6-6to5-browserify-boilerplate",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/thoughtram/es6-6to5-browserify-boilerplate.git"
-  },
-  "bugs": {
-    "url": "https://github.com/thoughtram/es6-6to5-browserify-boilerplate/issues"
-  },
+  "description": "A boilerplate for working with ES2015",
   "devDependencies": {
     "babelify": "~5.0.3",
     "browser-sync": "^1.7.1",
     "browserify": "^6.3.3",
-    "gulp": "~3.8.10",
+    "browsernizr": "^2.0.1",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnext": "^1.0.1",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-modernizr": "0.0.0",
+    "gulp-order": "^1.1.1",
+    "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-sequence": "^0.4.1",
+    "gulp-shell": "^0.5.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-util": "^3.0.6",
+    "jquery": "^2.1.4",
     "lodash": "^2.4.1",
     "rimraf": "~2.2.8",
-    "watchify": "^2.1.1",
-    "vinyl-source-stream": "^1.0.0"
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.1.1"
   },
-  "author": "Christoph Burgdorf <christoph@thoughtram.io>",
+  "author": "Victor Longon",
   "license": "MIT"
 }

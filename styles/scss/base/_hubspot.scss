@@ -1,0 +1,152 @@
+/**
+ * The Survey is hosted on Survey Gizmo:
+ * http://www.surveygizmo.com/s3/2329209/Zooma-Online-Grader
+ * We import the Survey in Hubspot with an iFrame, so that
+ * "save & continue" functionality works
+ *
+ *
+ * Bellow are the styles for the container page in Hubspot only
+ * Output: _dist/styles/onlinegrader-styles.css
+ * 
+ */
+
+@import
+  '../utils/variables',
+  '../utils/functions',
+  '../utils/mixins';
+
+//BODY CLASS
+.online-grader{
+  background-color: $off-white;
+  padding-top: 0 !important;
+  font-family: $text-font-stack;
+  h1, h2, h3, h4, h5, h6{
+    font-family: $text-font-stack;
+  }
+
+  /******* HEADER *******/
+  .header-container-wrapper{
+    position: relative;
+    background-color: $white;
+    width: auto;
+    padding: 20px 30px 30px 30px;
+    @include respond-to('screen-sm'){
+     padding-bottom: 0;
+    }
+    
+    height: auto;
+    .header-container {
+        
+        height: auto;
+        width: 100% !important;
+        padding: 0;
+    }
+    #header{
+      margin: 0;
+      padding: 30px 0 0 0;
+      height: auto;
+      .brand h2{
+        line-height: 1;
+        text-align: center;
+        max-width: 190px;
+        margin: 0 auto;
+        margin-top: -30px;
+        @include respond-to('screen-sm'){
+            max-width: initial;
+          }
+        
+        a{
+          display: block;
+          margin: 0;
+          left: 0;
+          @include respond-to('screen-sm'){
+            float: left;
+          }
+
+        }
+        .logo{
+          margin: 0 auto !important;
+          position: relative;
+          left: 0;
+          float: left;
+          top: 10px;
+          display: block;
+          clear: both;
+          @include respond-to('screen-sm'){
+            display: inline;
+            position: absolute;
+          }
+         
+        }
+        .grader-title{
+          width: 100%;
+          display: inline-block;
+         
+            
+          
+          a{
+            display: block;
+            margin-top: 20px;
+            margin-right: 0;
+            margin-left: -2px;
+            @include respond-to('screen-sm'){
+              margin: 0;
+              display: inline;
+              float: none;
+            }
+            &:hover{
+              color: $text-color;
+              text-decoration: none;
+            }
+            &:focus{
+              outline: 0;
+            }
+          }
+        }
+      }
+      
+    }
+  }
+
+
+  /******* BODY *******/
+  .body-container-wrapper {
+    margin: 20px auto;
+    padding: 30px 20px 20px 20px;
+    max-width: $grader-max-width;
+    @include respond-to('screen-sm'){
+      padding-top: 60px;
+    }
+    .body-container{
+      max-width: $grader-max-width;
+      width: 100%;
+      margin: 0 auto;
+      h3 {
+        font-size: 22px;
+        text-align: center;
+      }
+      input{
+        box-shadow: none;
+        &.hs-button{
+          font-size: 15px;
+          line-height: 1.4;
+          padding: 12.5px 50px;
+          margin: 10px;
+          transition: all .3s;
+        }
+      }
+      //submit form button container
+      .actions{
+        text-align: center;
+      }
+    } 
+
+  }
+
+  /******* FOOTER *******/
+  .footer-container-wrapper {
+
+    display: none;
+  }
+
+}

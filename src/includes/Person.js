@@ -6,6 +6,10 @@ class Person {
 
     get fullName() {
         return `${this.firstName} ${this.lastName}`;
+
+    }
+    get somethingElse(){
+    	return 'something else';
     }
 }
-export {Person}
+export {Person};
