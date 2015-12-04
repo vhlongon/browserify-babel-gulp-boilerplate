@@ -1,39 +1,33 @@
 ## ES6 Babel Browserify Boilerplate
 
-This is an boilerplate repo to make it easy to experiment with [ES6]. It's inspired by [es6-browserify-boilerplate](https://github.com/thoughtram/es6-browserify-boilerplate) but uses babel (formerly 6to5) for transpilation which does not depend on any runtime.
+Gulp boilerplate to use ES2015 with browserify for module loading and babel for the transpiling. 
+It's inspired by [es6-browserify-boilerplate](https://github.com/thoughtram/es6-6to5-browserify-boilerplate) but I have added other common gulp task for managing Sass compilation, image optimization, etc.
+
+I have also included the SASS ["7 1" boiler plate](https://github.com/HugoGiraudel/sass-boilerplate) by Sass creator, Hugo Giraudel
 
 
-### Initial setup
+### Install
 
-```bash
-# Clone the repo...
-git clone https://github.com/thoughtram/es6-6to5-browserify-boilerplate.git
-cd es6-6to5-browserify-boilerplate
-
-# Then, you need to install all the dependencies...
-npm install
-
-# If you wanna be able to use global commands `karma` and `gulp`...
-npm install -g gulp
-```
+# Install all dependecies
+npm install gulp -g (install gulp globally, if don't have installed yet)
+npm install (install all projects dependecies)
 
 ### Running in the browser
-```bash
-gulp build
-gulp serve
+gulp default task will start the web browser (on port 777) 
 
-# If you wanna Gulp to re-build on every change...
-gulp watch
-```
+# Other tasks includes 
+* gulp styles - compile all files under styles/scss to dist/css (import everything on styles/main) and reload on change
+* gulp images - optimize images, handle svg and reloads on image files updates
+* gulp html - reloads on html files change 
+* gulp build-persistent - main task for building js and start a stream with browserify - reloads on js files changes
+* gulp build - will also build, but will leave stream once done
 
+### About bundling
 
-### WTF is ES6?
-Simply, the next version of JavaScript that contains some really cool features. You might check out some of these:
+As mentioned, we use [Browserify](http://browserify.org/) and [Babel](http://babeljs.io/) to handle module loading and transpiling. 
 
-- https://wiki.mozilla.org/ES6_plans
-- http://globaldev.co.uk/2013/09/es6-part-1/
-- http://code.tutsplus.com/tutorials/eight-cool-features-coming-in-es6--net-33175
-
+The entry point to bundling everything is src/app.js. Import everything there and Gulp will take care of the rest. I have even included modernizr (using browsernizr) and Jquery as required there.
+Watchify watch for js files updates and emmit a sign to BrowserSync to reload when something has been updated.  
 
 ### What are all the pieces involved?
 
