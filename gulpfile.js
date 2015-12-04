@@ -11,16 +11,20 @@ var buffer       = require('vinyl-buffer');
 var _            = require('lodash');
 var browserSync  = require('browser-sync');
 var reload       = browserSync.reload;
+var uglify       = require('gulp-uglify');
 var sass         = require('gulp-sass');
 var sourcemaps   = require('gulp-sourcemaps');
 var cssnext      = require('gulp-cssnext');
 var imagemin     = require('gulp-imagemin');
-var modernizr    = require('gulp-modernizr');
 var plumber      = require('gulp-plumber');
-var order        = require('gulp-order');
-var gulpSequence = require('gulp-sequence').use(gulp);
-var config       = {baseUrl: './', entryFile: './src/app.js', outputDir: './dist/js/', outputFile: 'app.js'};
 var bundler;
+var config = {
+  baseUrl: './', 
+  entryFile: './src/app.js', 
+  outputDir: './dist/js/', 
+  outputFile: 'app.js'
+};
+
 
 //get bundle files and set up watchify
 function getBundler() {
@@ -28,7 +32,7 @@ function getBundler() {
     bundler = watchify(browserify(config.entryFile, _.extend({ debug: true }, watchify.args)));
   }
   return bundler;
-};
+}
 
 //set up bundle all files
 function bundle() {
@@ -44,17 +48,18 @@ function bundle() {
     .pipe(source(config.outputFile))
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(uglify())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(config.outputDir))
     .pipe(reload({stream: true}));
 }
 
 // start web server
-gulp.task('browserSync', function () {
+gulp.task('browserSync', function() {
   browserSync({
     port: 7777,
     server: {
-      baseDir: './'
+      baseDir: config.baseUrl
     },
     options: {
       reloadDelay: 100
@@ -64,8 +69,8 @@ gulp.task('browserSync', function () {
 });
 
 // clean the output directory
-gulp.task('clean', function(cb){
-    rimraf(config.outputDir, cb);
+gulp.task('clean', function(cb) {
+  rimraf(config.outputDir, cb);
 });
 
 //perform build without exiting
@@ -81,7 +86,7 @@ gulp.task('build', ['build-persistent'], function() {
 // watch task that reloads browser on js files update
 gulp.task('watch', ['build-persistent'], function() {
   getBundler().on('update', function() {
-    gulp.start('build-persistent')
+    gulp.start('build-persistent');
   });
 });
 
@@ -89,7 +94,7 @@ gulp.task('watch', ['build-persistent'], function() {
 gulp.task('styles', function() {
   //the initializer / master SCSS file, 
   //which will just be a file that imports everything
-  return gulp.src('./styles/scss/main.scss')
+  return gulp.src(config.baseUrl + 'styles/scss/main.scss')
               //prevent pipe breaking caused by errors from gulp plugins
               .pipe(plumber({
                 errorHandler: function(err) {
@@ -103,7 +108,7 @@ gulp.task('styles', function() {
               .pipe(sass({
                 errLogToConsole: true,
                 includePaths: [
-                  //'./styles/scss/'
+                  //config.baseUrl + 'styles/scss/'
                 ]
               }))
               // cssnext also prefix the css output 
@@ -118,24 +123,24 @@ gulp.task('styles', function() {
               //get our sources via sourcemaps
               .pipe(sourcemaps.write())
               //where to save our final, compressed css file
-              .pipe(gulp.dest('./dist/css/'))
+              .pipe(gulp.dest(config.baseUrl + 'dist/css/'))
               //notify browserSync to refresh
               .pipe(browserSync.reload({stream: true}));
 });
 
 //compressing images & handle SVG files
 gulp.task('images', function(tmp) {
-  gulp.src(['./images/*.jpg', './images/*.png'])
+  gulp.src([config.baseUrl + 'images/*.jpg', config.baseUrl + 'images/*.png'])
     //prevent pipe breaking caused by errors from gulp plugins
     .pipe(plumber())
     .pipe(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true }))
-    .pipe(gulp.dest('./images'));
+    .pipe(gulp.dest(config.baseUrl + 'images'));
 });
 
 //basically just keeping an eye on all HTML files
 gulp.task('html', function() {
   //watch any and all HTML files and refresh when something changes
-  return gulp.src('./*.html')
+  return gulp.src(config.baseUrl + '*.html')
       .pipe(plumber())
       .pipe(browserSync.reload({stream: true}))
       //catch errors
@@ -150,8 +155,8 @@ gulp.task('html', function() {
 //  compress all scripts and SCSS files
 gulp.task('default', ['browserSync', 'build-persistent', 'watch', 'styles'], function() {
   //a list of watchers, so it will watch all of the following files waiting for changes
-  gulp.watch('./styles/scss/**', ['styles']);
-  gulp.watch('./images/**', ['images']);
-  gulp.watch('./*.html', ['html']);
+  gulp.watch(config.baseUrl + 'styles/scss/**', ['styles']);
+  gulp.watch(config.baseUrl + 'images/**', ['images']);
+  gulp.watch(config.baseUrl + '*.html', ['html']);
+}); 
 
-});

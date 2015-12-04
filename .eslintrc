@@ -54,7 +54,7 @@
 /**
 //  * Possible errors
 //  */
-    "comma-dangle": [1, "always-multiline"],    // http://eslint.org/docs/rules/comma-dangle
+    //"comma-dangle": [1, "always-multiline"],    // http://eslint.org/docs/rules/comma-dangle
     "no-cond-assign": [2, "always"], // http://eslint.org/docs/rules/no-cond-assign
     "no-console": 1,                 // http://eslint.org/docs/rules/no-console
     "no-debugger": 1,                // http://eslint.org/docs/rules/no-debugger
@@ -119,7 +119,7 @@
     "vars-on-top": 2,                // http://eslint.org/docs/rules/vars-on-top
     "wrap-iife": [2, "any"],         // http://eslint.org/docs/rules/wrap-iife
     "yoda": 2,                       // http://eslint.org/docs/rules/yoda
-    "max-len": [2, 80, 2],           // http://eslint.org/docs/rules/max-len
+    "max-len": [2, 100, 2],           // http://eslint.org/docs/rules/max-len
 
 // /**
 //  * Style
