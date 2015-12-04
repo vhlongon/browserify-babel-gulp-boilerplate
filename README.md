@@ -3,7 +3,7 @@
 Gulp boilerplate to use ES2015 with browserify for module loading and babel for the transpiling. 
 It's inspired by [es6-browserify-boilerplate](https://github.com/thoughtram/es6-6to5-browserify-boilerplate) but I have added other common gulp task for managing Sass compilation, image optimization, etc.
 
-I have also included the SASS ["7 1" boiler plate](https://github.com/HugoGiraudel/sass-boilerplate) by Sass creator, Hugo Giraudel
+I have also included the SASS ["7 1" boilerplate](https://github.com/HugoGiraudel/sass-boilerplate) by Sass creator, Hugo Giraudel
 
 
 ## Install
@@ -31,7 +31,18 @@ The entry point to bundling everything is src/app.js. Import/require everything 
 I have even included modernizr (using browsernizr) and Jquery as required there, as well as ES2015 modules using 
 Watchify watch for js files updates and emmit a sign to BrowserSync to reload when something has been updated.  
 
-Feel free to clone and  use this repo for your project!
+### ES2015
+
+There are a lot of new features for the next version of Javascript, ES2015 (formely ES6) available. 
+
+There are some simple examples of some of them on this repo, like new type of variables, destructuring, string interpolation, class and modules, but there is a lot more!
+
+Have a  look at: 
+
+* (https://hacks.mozilla.org/category/es6-in-depth/)
+* (http://www.2ality.com/2014/12/es6-oop.html)
+* (https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come) - Interative online course - subscription required 
+
 
 ### What are all the pieces involved?
 
@@ -52,4 +63,7 @@ Task runner to make defining and running the tasks simpler.
 [CommonJS]: http://wiki.commonjs.org/wiki/CommonJS
 [Browserify]: http://browserify.org/
 [Gulp]: http://gulpjs.com/
+
+
+Feel free to clone and  use this repo for your project!
 
