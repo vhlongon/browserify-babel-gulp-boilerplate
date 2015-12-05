@@ -1,7 +1,7 @@
-# ES6 Babel Browserify Boilerplate
+# ES6 Babel Browserify with reactify Boilerplate 
 
 Gulp boilerplate to use ES2015 with browserify for module loading and babel for the transpiling. 
-It's inspired by [es6-browserify-boilerplate](https://github.com/thoughtram/es6-6to5-browserify-boilerplate) but I have added other common gulp task for managing Sass compilation, image optimization, etc.
+It's inspired by [es6-browserify-boilerplate](https://github.com/thoughtram/es6-6to5-browserify-boilerplate) and [react-app-boilerplate](https://github.com/christianalfoni/react-app-boilerplate) but I have added other common gulp task for managing Sass compilation, image optimization, etc.
 
 I have also included the SASS ["7 1" boiler plate](https://github.com/HugoGiraudel/sass-boilerplate) by Sass creator, Hugo Giraudel
 
@@ -24,14 +24,34 @@ Run *gulp* (default task) to build the project, compile js, Sass and start the w
 
 ### About bundling
 
-As mentioned, [Browserify](http://browserify.org/) and [Babel](http://babeljs.io/) are used to handle module loading and transpiling. 
+As mentioned, [Browserify](http://browserify.org/), [Babel](http://babeljs.io) and [Reactify](https://github.com/andreypopp/reactify) are used to handle module loading, transpiling and transform react JSX to normal JS. 
 
 The entry point to bundling everything is src/app.js. Import/require everything there and Gulp will take care of the rest. 
 
-I have even included modernizr (using browsernizr) and Jquery as required there, as well as ES2015 modules using 
-Watchify watch for js files updates and emmit a sign to BrowserSync to reload when something has been updated.  
+I have even included modernizr (using browsernizr) and Jquery as required there, as well as ES2015 modules and react. Watchify watch for js files updates and emmit a sign to BrowserSync to reload when something has been updated.  
 
+<<<<<<< HEAD
 Feel free to clone and  use this repo for your project!
+=======
+### ES2015
+
+There are a lot of new features for the next version of Javascript, ES2015 (formely ES6) available. 
+
+There are some simple examples of some of them on this repo, like new type of variables, destructuring, string interpolation, class and modules, but there is a lot more!
+
+Have a  look at: 
+
+* (https://hacks.mozilla.org/category/es6-in-depth/)
+* (http://www.2ality.com/2014/12/es6-oop.html)
+* (https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come) - Interative online course - subscription required 
+
+### React
+
+Fast library created from Facebook team for building user interface
+
+https://facebook.github.io/react/
+
+>>>>>>> a5f159a61f1c1a190edb664cb8510ef826ac0b97
 
 ### What are all the pieces involved?
 
@@ -43,6 +63,10 @@ Babel is configured to transpile ES6 modules into CommonJS syntax and we use bro
 
 #### [Browserify]
 Browserify walks through all files and traces down all `require()`s to bundle all files together.  
+
+#### [Reactify]
+Browserify transform for JSX (superset of JavaScript used in React library) 
+
 
 #### [Gulp]
 Task runner to make defining and running the tasks simpler.
