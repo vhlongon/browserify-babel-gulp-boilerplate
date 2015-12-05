@@ -1,7 +1,7 @@
-# ES6 Babel Browserify with reactify Boilerplate 
+# ES6 Babel Browserify Boilerplate 
 
 Gulp boilerplate to use ES2015 with browserify for module loading and babel for the transpiling. 
-It's inspired by [es6-browserify-boilerplate](https://github.com/thoughtram/es6-6to5-browserify-boilerplate) and [react-app-boilerplate](https://github.com/christianalfoni/react-app-boilerplate) but I have added other common gulp task for managing Sass compilation, image optimization, etc.
+It's inspired by [es6-browserify-boilerplate](https://github.com/thoughtram/es6-6to5-browserify-boilerplate) but I have added other common gulp task for managing Sass compilation, image optimization, etc.
 
 I have also included the SASS ["7 1" boiler plate](https://github.com/HugoGiraudel/sass-boilerplate) by Sass creator, Hugo Giraudel
 
@@ -24,13 +24,12 @@ Run *gulp* (default task) to build the project, compile js, Sass and start the w
 
 ### About bundling
 
-As mentioned, [Browserify](http://browserify.org/), [Babel](http://babeljs.io) and [Reactify](https://github.com/andreypopp/reactify) are used to handle module loading, transpiling and transform react JSX to normal JS. 
+As mentioned, [Browserify](http://browserify.org/) and [Babel](http://babeljs.io) are used to handle module loading, transpiling.
 
 The entry point to bundling everything is src/app.js. Import/require everything there and Gulp will take care of the rest. 
 
 I have even included modernizr (using browsernizr) and Jquery as required there, as well as ES2015 modules and react. Watchify watch for js files updates and emmit a sign to BrowserSync to reload when something has been updated.  
 
-<<<<<<< HEAD
 Feel free to clone and  use this repo for your project!
 =======
 ### ES2015
@@ -51,7 +50,8 @@ Fast library created from Facebook team for building user interface
 
 https://facebook.github.io/react/
 
->>>>>>> a5f159a61f1c1a190edb664cb8510ef826ac0b97
+=======
+Feel free to clone and  use this repo for your project!
 
 ### What are all the pieces involved?
 
