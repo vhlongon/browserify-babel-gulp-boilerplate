@@ -5,7 +5,6 @@ var fs           = require('fs');
 var browserify   = require('browserify');
 var watchify     = require('watchify');
 var babelify     = require('babelify');
-var reactify     = require('reactify');
 var rimraf       = require('rimraf');
 var source       = require('vinyl-source-stream');
 var buffer       = require('vinyl-buffer');
@@ -23,20 +22,14 @@ var config = {
   baseUrl: './', 
   entryFile: './src/app.js', 
   outputDir: './dist/js/', 
-  outputFile: 'app.js',
-  debug: true,
-  transform: [babelify, reactify]
+  outputFile: 'app.js'
 };
 
 
 //get bundle files and set up watchify
 function getBundler() {
   if (!bundler) {
-    bundler = watchify(browserify({
-      entries: config.entryFile, 
-      debug: config.debug,
-      transform: config.transform
-    }));
+    bundler = watchify(browserify(config.entryFile, _.extend({ debug: true }, watchify.args)));
   }
   return bundler;
 }
@@ -44,6 +37,7 @@ function getBundler() {
 //set up bundle all files
 function bundle() {
   return getBundler()
+    .transform(babelify)
     .bundle()
     .on('error', function(err) { 
       console.log('Error: ' + err.message); 
@@ -165,4 +159,3 @@ gulp.task('default', ['browserSync', 'build-persistent', 'watch', 'styles'], fun
   gulp.watch(config.baseUrl + 'images/**', ['images']);
   gulp.watch(config.baseUrl + '*.html', ['html']);
 }); 
-
