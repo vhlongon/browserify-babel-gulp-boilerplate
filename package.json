@@ -1,7 +1,7 @@
 {
-  "name": "browserify-babel-boilerplate",
+  "name": "browserify-babel-gulp-react-boilerplate",
   "version": "0.0.0",
-  "description": "A boilerplate for working with ES2015",
+  "description": "A boilerplate for working with ES2015 and react",
   "devDependencies": {
     "babelify": "~5.0.3",
     "browser-sync": "^1.7.1",
@@ -13,16 +13,20 @@
     "gulp-imagemin": "^2.3.0",
     "gulp-modernizr": "0.0.0",
     "gulp-plumber": "^1.0.1",
-    "gulp-sass": "^2.0.4",
+    "gulp-sass": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.6",
     "jquery": "^2.1.4",
-    "lodash": "^2.4.1",
+    "lodash": "^3.0.0",
+    "reactify": "^1.1.1",
     "rimraf": "~2.2.8",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^2.1.1"
+  },
+   "dependencies": {
+    "react": "^0.13.3"
   },
   "author": "Victor Longon",
   "license": "MIT"
