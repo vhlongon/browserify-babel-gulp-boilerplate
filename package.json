@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "A boilerplate for working with ES2015 and react",
   "devDependencies": {
+    "babel-preset-es2015": "^6.3.13",
     "babelify": "~7.2.0",
     "browser-sync": "^2.10.1",
     "browserify": "^12.0.1",
@@ -12,6 +13,7 @@
     "gulp-cssnext": "^1.0.1",
     "gulp-imagemin": "^2.4.0",
     "gulp-modernizr": "1.0.0-alpha",
+    "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",
@@ -25,7 +27,7 @@
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.6.1"
   },
-   "dependencies": {
+  "dependencies": {
     "react": "^0.14.3"
   },
   "author": "Victor Longon",
