@@ -3,30 +3,30 @@
   "version": "0.0.0",
   "description": "A boilerplate for working with ES2015 and react",
   "devDependencies": {
-    "babelify": "~5.0.3",
-    "browser-sync": "^1.7.1",
-    "browserify": "^6.3.3",
+    "babelify": "~7.2.0",
+    "browser-sync": "^2.10.1",
+    "browserify": "^12.0.1",
     "browsernizr": "^2.0.1",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-cssnext": "^1.0.1",
-    "gulp-imagemin": "^2.3.0",
-    "gulp-modernizr": "0.0.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-modernizr": "1.0.0-alpha",
     "gulp-plumber": "^1.0.1",
-    "gulp-sass": "^2.1.0",
+    "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.1",
-    "gulp-util": "^3.0.6",
+    "gulp-util": "^3.0.7",
     "jquery": "^2.1.4",
-    "lodash": "^3.0.0",
+    "lodash": "^3.10.1",
     "reactify": "^1.1.1",
-    "rimraf": "~2.2.8",
+    "rimraf": "~2.4.4",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.0.0",
-    "watchify": "^2.1.1"
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.6.1"
   },
    "dependencies": {
-    "react": "^0.13.3"
+    "react": "^0.14.3"
   },
   "author": "Victor Longon",
   "license": "MIT"

@@ -8,7 +8,6 @@ var babelify     = require('babelify');
 var rimraf       = require('rimraf');
 var source       = require('vinyl-source-stream');
 var buffer       = require('vinyl-buffer');
-var _            = require('lodash');
 var browserSync  = require('browser-sync');
 var reload       = browserSync.reload;
 var uglify       = require('gulp-uglify');
@@ -17,41 +16,56 @@ var sourcemaps   = require('gulp-sourcemaps');
 var cssnext      = require('gulp-cssnext');
 var imagemin     = require('gulp-imagemin');
 var plumber      = require('gulp-plumber');
+var notify      = require('gulp-notify');
 var bundler;
 var config = {
-  baseUrl: './', 
-  entryFile: './src/app.js', 
-  outputDir: './dist/js/', 
-  outputFile: 'app.js'
+  baseUrl: './',
+  entryFile: './src/app.js',
+  outputDir: './dist/js/',
+  outputFile: 'app.js',
 };
 
 
 //get bundle files and set up watchify
 function getBundler() {
   if (!bundler) {
-    bundler = watchify(browserify(config.entryFile, _.extend({ debug: true }, watchify.args)));
+    bundler = watchify(browserify({
+      entries: config.entryFile,
+      debug: true,
+      cache: {},
+      packageCache: {},
+      fullPaths: true // Requirement of watchify
+    }));
   }
   return bundler;
 }
 
 //set up bundle all files
 function bundle() {
+  var start = Date.now();
+  console.log('Building APP bundle');
   return getBundler()
-    .transform(babelify)
+    .transform('babelify', {
+      presets: ['es2015'],
+      sourceMapRelative: config.baseUrl + '/src'
+    })
     .bundle()
-    .on('error', function(err) { 
-      console.log('Error: ' + err.message); 
-      // end this stream 
+    .on('error', function(err) {
+      console.log('Error: ' + err.message);
+      // end this stream
       // this prevents browserify to crash on compilation error
       this.emit('end');
     })
     .pipe(source(config.outputFile))
     .pipe(buffer())
-    .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(uglify())
-    .pipe(sourcemaps.write('./'))
+    //.pipe(sourcemaps.init({ loadMaps: true }))
+    //.pipe(uglify())
+    //.pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(config.outputDir))
-    .pipe(reload({stream: true}));
+    .pipe(notify(function displayBundleMessage() {
+      console.log('APP bundle built in ' + (Date.now() - start) + 'ms');
+    }));
+    //.pipe(reload({stream: true}));
 }
 
 // start web server
@@ -75,7 +89,8 @@ gulp.task('clean', function(cb) {
 
 //perform build without exiting
 gulp.task('build-persistent', ['clean'], function() {
-  return bundle();
+  return bundle()
+          .pipe(browserSync.reload({stream: true}));
 });
 
 //perform build and exists pipe / stop gulp
@@ -90,9 +105,12 @@ gulp.task('watch', ['build-persistent'], function() {
   });
 });
 
+/** Other tasks for handling images, compiling SASS and update on html files updates */
+
+
 //compiling SCSS files
 gulp.task('styles', function() {
-  //the initializer / master SCSS file, 
+  //the initializer / master SCSS file,
   //which will just be a file that imports everything
   return gulp.src(config.baseUrl + 'styles/scss/main.scss')
               //prevent pipe breaking caused by errors from gulp plugins
@@ -111,8 +129,7 @@ gulp.task('styles', function() {
                   //config.baseUrl + 'styles/scss/'
                 ]
               }))
-              // cssnext also prefix the css output 
-              // (compress set to false so source maps work)
+              // cssnext also prefix the css output
               .pipe(cssnext({
                 compress: true
               }))
@@ -158,4 +175,4 @@ gulp.task('default', ['browserSync', 'build-persistent', 'watch', 'styles'], fun
   gulp.watch(config.baseUrl + 'styles/scss/**', ['styles']);
   gulp.watch(config.baseUrl + 'images/**', ['images']);
   gulp.watch(config.baseUrl + '*.html', ['html']);
-}); 
+});
